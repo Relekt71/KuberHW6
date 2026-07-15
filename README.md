@@ -98,9 +98,8 @@
 ## Проверка работы
 
 1. Проверка через curl внутри кластера:
-bash
 
-kubectl run test-pod --rm -it --image=busybox --restart=Never -- /bin/sh -c "wget -qO- http://web-app-service"
+    kubectl run test-pod --rm -it --image=busybox --restart=Never -- /bin/sh -c "wget -qO- http://web-app-service"
 
 2. Проверка через NodePort:
 
