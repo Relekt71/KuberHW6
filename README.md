@@ -119,9 +119,11 @@
 # Результат
 
 <img width="933" height="247" alt="image" src="https://github.com/user-attachments/assets/09bf0957-a382-4991-bdb5-6d39c9a39d84" />
+
 Рисунок 1 - Веб-страница, загруженная из ConfigMap
 
 <img width="933" height="247" alt="image" src="https://github.com/user-attachments/assets/f76986c5-31a8-41ef-af7c-07341e3a1912" />
+
 Рисунок 2 - Проверка через curl внутри кластера
 
 # Задание 2: Настройка HTTPS с Secrets
@@ -221,9 +223,11 @@
 ## Результат
 
 <img width="885" height="502" alt="image" src="https://github.com/user-attachments/assets/2a2738f9-db5d-4352-a0b9-b2a78aeff09b" />
+
 Рисунок 3 - Проверка HTTPS доступа через curl
 
 <img width="675" height="368" alt="image" src="https://github.com/user-attachments/assets/f5148f7f-fe95-41bf-9a84-c557b21a4d53" />
+
 Рисунок 4 - Статус Ingress ресурса
 
 
@@ -319,6 +323,7 @@
     web-app-79555c9bf5-pz7k6   2/2     Running   0          16m
 
 <img width="513" height="64" alt="image" src="https://github.com/user-attachments/assets/060d147f-a7a5-45e8-9246-d663b98f63aa" />
+
 Рисунок 5 - Просмотр подов пользователем developer
 2. Просмотр логов (РАЗРЕШЕНО)
 
@@ -340,6 +345,7 @@
     10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
 
 <img width="939" height="247" alt="image" src="https://github.com/user-attachments/assets/d2a2edb2-e247-4b43-8abf-7550037dfbc8" />
+
 Рисунок 6 - Просмотр логов пользователем developer
 
 3. Создание deployment (ЗАПРЕЩЕНО)
@@ -351,6 +357,7 @@
     error: failed to create deployment: deployments.apps is forbidden: User "developer" cannot create resource "deployments" in API group "apps" in the namespace "default"
 
 <img width="936" height="51" alt="image" src="https://github.com/user-attachments/assets/d6457723-4deb-4de8-a89d-61289243a8d9" />
+
 Рисунок 7 - Ошибка при попытке создания deployment
 
 4. Просмотр secrets (ЗАПРЕЩЕНО)
@@ -362,6 +369,7 @@
     Error from server (Forbidden): secrets is forbidden: User "developer" cannot list resource "secrets" in API group "" in the namespace "default"
 
 <img width="936" height="51" alt="image" src="https://github.com/user-attachments/assets/3b626f3d-a31d-4db3-8d8e-8b39cc3e779a" />
+
 Рисунок 8 - Ошибка при попытке просмотра secrets
 
 5. Просмотр всех ресурсов (ЗАПРЕЩЕНО ❌)
@@ -381,4 +389,5 @@
     Error from server (Forbidden): jobs.batch is forbidden: User "developer" cannot list resource "jobs" in API group "batch" in the namespace "default"
 
 <img width="933" height="367" alt="image" src="https://github.com/user-attachments/assets/8ef03b0f-808c-4cf4-a95b-5478324e2f6f" />
+
 Рисунок 9 - Ошибки при попытке просмотра всех ресурсов
