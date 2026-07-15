@@ -1,0 +1,93 @@
+# Сертификаты и ключи (секретные данные)
+*.crt
+*.key
+*.csr
+*.pem
+*.p12
+*.pfx
+*.der
+*.cer
+*.crl
+*.srl
+*.pub
+*.priv
+*.p8
+*.p7b
+*.p7c
+
+# Файлы Kubernetes с секретами
+*secret*.yaml
+*secret*.yml
+*-secret.yaml
+*-secret.yml
+*credentials*.yaml
+*credentials*.yml
+*.kubeconfig
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# IDE файлы
+.vscode/
+.idea/
+*.iml
+.vs/
+*.code-workspace
+*.code-search
+
+# Файлы скриншотов (если они большие)
+# Раскомментируйте если нужно исключить скриншоты из репозитория
+# screenshots/*.png
+# screenshots/*.jpg
+# screenshots/*.jpeg
+
+# Terraform файлы
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Helm
+charts/*.tgz
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+
+# Артефакты сборки
+*.tar
+*.gz
+*.zip
+*.rar
+
+# Файлы Minikube
+.minikube/
+.kube/
+.kubeconfig
+
+# Файлы с локальными настройками
+.env
+.env.local
+.env.*.local
+*.local.yaml
+*.local.yml
+
+# Сгенерированные файлы
+developer.*
+tls.*
+ca.*
+*.csr
+*.srl
