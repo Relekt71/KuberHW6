@@ -99,34 +99,35 @@
 
 1. Проверка через curl внутри кластера:
 
-    kubectl run test-pod --rm -it --image=busybox --restart=Never -- /bin/sh -c "wget -qO- http://web-app-service"
+        kubectl run test-pod --rm -it --image=busybox --restart=Never -- /bin/sh -c "wget -qO- http://web-app-service"
 
 2. Проверка через NodePort:
 
 # Получение URL для доступа
+
     minikube service web-app-service --url
 
 # Или напрямую через curl
+
     curl http://$(minikube ip):$(kubectl get service web-app-service -o jsonpath='{.spec.ports[0].nodePort}')
 
 3. Проверка через exec внутри пода:
 
-    POD_NAME=$(kubectl get pods -l app=web-app -o jsonpath='{.items[0].metadata.name}')
-    kubectl exec -it $POD_NAME -c nginx -- cat /usr/share/nginx/html/index.html
+        POD_NAME=$(kubectl get pods -l app=web-app -o jsonpath='{.items[0].metadata.name}')
+        kubectl exec -it $POD_NAME -c nginx -- cat /usr/share/nginx/html/index.html
 
 # Результат
 
-https://screenshots/configmap-page.png
+<img width="933" height="247" alt="image" src="https://github.com/user-attachments/assets/09bf0957-a382-4991-bdb5-6d39c9a39d84" />
 Рисунок 1 - Веб-страница, загруженная из ConfigMap
 
-https://screenshots/configmap-curl.png
+<img width="933" height="247" alt="image" src="https://github.com/user-attachments/assets/f76986c5-31a8-41ef-af7c-07341e3a1912" />
 Рисунок 2 - Проверка через curl внутри кластера
-Задание 2: Настройка HTTPS с Secrets
-Описание
 
-Развернуто приложение с доступом по HTTPS с использованием самоподписанного сертификата.
-Команды генерации сертификатов
-bash
+# Задание 2: Настройка HTTPS с Secrets
+##Описание
+    Развернуто приложение с доступом по HTTPS с использованием самоподписанного сертификата.
+    Команды генерации сертификатов
 
 # Генерация самоподписанного SSL-сертификата
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
@@ -219,10 +220,10 @@ bash
 
 ## Результат
 
-https://screenshots/https-check.png
+<img width="885" height="502" alt="image" src="https://github.com/user-attachments/assets/2a2738f9-db5d-4352-a0b9-b2a78aeff09b" />
 Рисунок 3 - Проверка HTTPS доступа через curl
 
-https://screenshots/ingress-status.png
+<img width="675" height="368" alt="image" src="https://github.com/user-attachments/assets/f5148f7f-fe95-41bf-9a84-c557b21a4d53" />
 Рисунок 4 - Статус Ingress ресурса
 
 
@@ -313,16 +314,13 @@ https://screenshots/ingress-status.png
     kubectl get pods --as=developer
 
 #### Результат:
-    text
-
     NAME                       READY   STATUS    RESTARTS   AGE
     web-app-79555c9bf5-nbs9f   2/2     Running   0          16m
     web-app-79555c9bf5-pz7k6   2/2     Running   0          16m
 
-https://screenshots/rbac-pods.png
+<img width="513" height="64" alt="image" src="https://github.com/user-attachments/assets/060d147f-a7a5-45e8-9246-d663b98f63aa" />
 Рисунок 5 - Просмотр подов пользователем developer
 2. Просмотр логов (РАЗРЕШЕНО)
-
 
 # Просмотр логов nginx
     kubectl logs web-app-79555c9bf5-nbs9f -c nginx --as=developer --tail=5
@@ -341,8 +339,9 @@ https://screenshots/rbac-pods.png
     10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
     10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
 
-https://screenshots/rbac-logs.png
+<img width="939" height="247" alt="image" src="https://github.com/user-attachments/assets/d2a2edb2-e247-4b43-8abf-7550037dfbc8" />
 Рисунок 6 - Просмотр логов пользователем developer
+
 3. Создание deployment (ЗАПРЕЩЕНО)
 
     kubectl create deployment test-deployment --image=nginx --as=developer
@@ -351,8 +350,9 @@ https://screenshots/rbac-logs.png
 
     error: failed to create deployment: deployments.apps is forbidden: User "developer" cannot create resource "deployments" in API group "apps" in the namespace "default"
 
-https://screenshots/rbac-create-error.png
+<img width="936" height="51" alt="image" src="https://github.com/user-attachments/assets/d6457723-4deb-4de8-a89d-61289243a8d9" />
 Рисунок 7 - Ошибка при попытке создания deployment
+
 4. Просмотр secrets (ЗАПРЕЩЕНО)
 
     kubectl get secrets --as=developer
@@ -361,8 +361,9 @@ https://screenshots/rbac-create-error.png
 
     Error from server (Forbidden): secrets is forbidden: User "developer" cannot list resource "secrets" in API group "" in the namespace "default"
 
-https://screenshots/rbac-secrets-error.png
+<img width="936" height="51" alt="image" src="https://github.com/user-attachments/assets/3b626f3d-a31d-4db3-8d8e-8b39cc3e779a" />
 Рисунок 8 - Ошибка при попытке просмотра secrets
+
 5. Просмотр всех ресурсов (ЗАПРЕЩЕНО ❌)
 
     kubectl get all --as=developer
@@ -379,5 +380,5 @@ https://screenshots/rbac-secrets-error.png
     Error from server (Forbidden): cronjobs.batch is forbidden: User "developer" cannot list resource "cronjobs" in API group "batch" in the namespace "default"
     Error from server (Forbidden): jobs.batch is forbidden: User "developer" cannot list resource "jobs" in API group "batch" in the namespace "default"
 
-https://screenshots/rbac-all-error.png
+<img width="933" height="367" alt="image" src="https://github.com/user-attachments/assets/8ef03b0f-808c-4cf4-a95b-5478324e2f6f" />
 Рисунок 9 - Ошибки при попытке просмотра всех ресурсов
